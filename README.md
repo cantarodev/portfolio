@@ -69,19 +69,19 @@ El usuario de CI/CD `github-actions-deploy` utiliza la siguiente política perso
       "Sid": "S3BucketListing",
       "Effect": "Allow",
       "Action": ["s3:ListBucket"],
-      "Resource": "arn:aws:s3:::cantaro-portfolio"
+      "Resource": "arn:aws:s3:::TU_NOMBRE_DE_BUCKET"
     },
     {
       "Sid": "S3ObjectsManagement",
       "Effect": "Allow",
       "Action": ["s3:PutObject", "s3:GetObject", "s3:DeleteObject"],
-      "Resource": "arn:aws:s3:::cantaro-portfolio/*"
+      "Resource": "arn:aws:s3:::TU_NOMBRE_DE_BUCKET/*"
     },
     {
       "Sid": "CloudFrontCacheInvalidation",
       "Effect": "Allow",
       "Action": ["cloudfront:CreateInvalidation"],
-      "Resource": "arn:aws:cloudfront::*:distribution/EQM2F3GP8CZIK"
+      "Resource": "arn:aws:cloudfront::*:distribution/TU_DISTRIBUTION_ID"
     }
   ]
 }
