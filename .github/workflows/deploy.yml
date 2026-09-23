@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main # O 'master', según el nombre de tu rama principal
+    paths-ignore:
+      - "**.md"
+      - "LICENSE"
+      - ".gitignore"
 
 jobs:
   deploy:

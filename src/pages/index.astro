@@ -1,8 +1,25 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { PortfolioPage } from "@/components/PortfolioPage";
+import { SiteBackdrop } from "@/components/2d/SiteBackdrop";
+import { MobileSocialDock } from "@/components/MobileSocialDock";
+import { SocialSidebar } from "@/components/SocialSidebar";
+import { HomeSections } from "@/components/HomeSections";
+import { Footer } from "@/components/sections/Footer";
+import { Hero } from "@/components/sections/Hero";
 ---
 
 <Layout>
-  <PortfolioPage client:load />
+  {/* Estático (sin JS): fondo y barras sociales */}
+  <SiteBackdrop />
+  <SocialSidebar />
+  <MobileSocialDock />
+
+  <main id="main" class="pb-16 lg:pb-0">
+    {/* Hero: visible de inmediato */}
+    <Hero client:load />
+    {/* Resto de secciones: se hidratan al entrar en viewport */}
+    <HomeSections client:visible />
+  </main>
+
+  <Footer />
 </Layout>

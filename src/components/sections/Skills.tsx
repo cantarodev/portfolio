@@ -29,7 +29,7 @@ export function Skills() {
             <h3 className="font-mono text-sm font-medium text-term">
               {group.title}
             </h3>
-            <p className="mt-1.5 text-xs leading-relaxed text-crema/55">
+            <p className="mt-1.5 text-xs leading-relaxed text-crema/70">
               {group.summary}
             </p>
             <ul className="mt-4 flex flex-wrap gap-1.5">

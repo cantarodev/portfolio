@@ -138,7 +138,7 @@ export function FailureLab() {
           </MetricGrid>
 
           <div>
-            <h2 className="mb-2 font-mono text-[11px] tracking-widest text-crema/45 uppercase">
+            <h2 className="mb-2 font-mono text-[11px] tracking-widest text-crema/65 uppercase">
               Línea de recuperación
             </h2>
             <ol className="flex flex-wrap items-center gap-2 font-mono text-[10px]">
@@ -154,7 +154,7 @@ export function FailureLab() {
                     >
                       {step}
                     </span>
-                    {index < 4 && <span className="text-crema/25">→</span>}
+                    {index < 4 && <span className="text-crema/60">→</span>}
                   </li>
                 ),
               )}
@@ -162,7 +162,7 @@ export function FailureLab() {
           </div>
 
           <div>
-            <h2 className="mb-2 font-mono text-[11px] tracking-widest text-crema/45 uppercase">
+            <h2 className="mb-2 font-mono text-[11px] tracking-widest text-crema/65 uppercase">
               Registro de eventos
             </h2>
             <EventLog events={snapshot.events} />

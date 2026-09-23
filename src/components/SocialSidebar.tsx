@@ -15,7 +15,7 @@ export function SocialSidebar() {
         target="_blank"
         rel="noreferrer"
         aria-label="GitHub"
-        className="text-crema/50 transition-all duration-200 hover:scale-110 hover:text-term"
+        className="text-crema/65 transition-all duration-200 hover:scale-110 hover:text-term"
       >
         <GithubIcon className="size-4" />
       </a>
@@ -24,14 +24,14 @@ export function SocialSidebar() {
         target="_blank"
         rel="noreferrer"
         aria-label="LinkedIn"
-        className="text-crema/50 transition-all duration-200 hover:scale-110 hover:text-term"
+        className="text-crema/65 transition-all duration-200 hover:scale-110 hover:text-term"
       >
         <LinkedinIcon className="size-4" />
       </a>
       <a
         href={`mailto:${PERSONAL.email}`}
         aria-label="Contacto"
-        className="text-crema/50 transition-all duration-200 hover:scale-110 hover:text-term"
+        className="text-crema/65 transition-all duration-200 hover:scale-110 hover:text-term"
       >
         <Mail className="size-4" />
       </a>

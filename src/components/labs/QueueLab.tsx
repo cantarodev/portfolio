@@ -217,7 +217,7 @@ export function QueueLab() {
             </MetricGrid>
 
             <div>
-              <h3 className="mb-2 font-mono text-[11px] tracking-widest text-crema/45 uppercase">
+              <h3 className="mb-2 font-mono text-[11px] tracking-widest text-crema/65 uppercase">
                 Registro de eventos
               </h3>
               <EventLog events={snapshot.events} />
@@ -294,7 +294,7 @@ export function QueueLab() {
                 Dead-letter queue ({snapshot.deadLetters})
               </h2>
               {snapshot.dlq.length === 0 ? (
-                <p className="mt-2 font-mono text-[11px] text-crema/35">
+                <p className="mt-2 font-mono text-[11px] text-crema/60">
                   vacía — ningún mensaje agotó sus reintentos
                 </p>
               ) : (
@@ -309,7 +309,7 @@ export function QueueLab() {
                   ))}
                 </ul>
               )}
-              <p className="mt-3 text-xs leading-relaxed text-crema/55">
+              <p className="mt-3 text-xs leading-relaxed text-crema/70">
                 Una{" "}
                 <Term tip="Destino para mensajes que fallan repetidamente al procesarse.">
                   dead-letter queue
@@ -347,7 +347,7 @@ export function QueueLab() {
                   key={layer}
                   className="flex items-center gap-3 rounded-lg border border-term/15 bg-term/[0.03] px-3 py-2 font-mono text-[11px] text-crema/75"
                 >
-                  <span className="text-crema/30">
+                  <span className="text-crema/60">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   {layer}

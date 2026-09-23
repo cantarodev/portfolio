@@ -78,7 +78,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="contact-name"
-            className="font-mono text-[11px] tracking-wide text-crema/50 uppercase"
+            className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
           >
             Nombre
           </label>
@@ -93,7 +93,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="contact-email"
-            className="font-mono text-[11px] tracking-wide text-crema/50 uppercase"
+            className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
           >
             Email
           </label>
@@ -111,7 +111,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="contact-message"
-          className="font-mono text-[11px] tracking-wide text-crema/50 uppercase"
+          className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
         >
           Mensaje
         </label>

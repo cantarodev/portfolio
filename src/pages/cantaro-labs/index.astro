@@ -27,7 +27,9 @@ import { LAB_NOTES, LABS, SITE } from "@/lib/constants";
     <ul class="mt-10 grid gap-4 sm:grid-cols-2">
       {
         LABS.map((lab) => (
-          <LabCard lab={lab} />
+          <li class="min-w-0">
+            <LabCard lab={lab} />
+          </li>
         ))
       }
     </ul>
@@ -40,7 +42,7 @@ import { LAB_NOTES, LABS, SITE } from "@/lib/constants";
         >
           Notas de laboratorio
         </h2>
-        <p class="font-mono text-[11px] text-crema/40">construyendo en público</p>
+        <p class="font-mono text-[11px] text-crema/60">construyendo en público</p>
       </div>
       <ul class="mt-6 grid gap-4 md:grid-cols-3">
         {

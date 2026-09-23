@@ -37,7 +37,7 @@ export function ContactCTA() {
             </Button>
           </div>
 
-          <p className="mt-6 font-mono text-xs text-crema/55">
+          <p className="mt-6 font-mono text-xs text-crema/70">
             <a
               href={`mailto:${PERSONAL.email}`}
               className="inline-flex items-center gap-1.5 transition-colors hover:text-term"
@@ -46,7 +46,7 @@ export function ContactCTA() {
             </a>
           </p>
 
-          <p className="mt-6 max-w-md border-l-2 border-term/30 pl-4 text-xs leading-relaxed text-crema/50">
+          <p className="mt-6 max-w-md border-l-2 border-term/30 pl-4 text-xs leading-relaxed text-crema/65">
             El formulario hace POST a un endpoint configurable (webhook / función
             serverless). Si no hay endpoint, abre tu cliente de correo. Sin
             secretos en el navegador.

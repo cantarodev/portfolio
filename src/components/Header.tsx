@@ -84,7 +84,7 @@ function Brand() {
     >
       <span className="text-term">&gt;_</span>{" "}
       <span className="text-crema">cantaro</span>
-      <span className="text-crema/40">.dev</span>
+      <span className="text-crema/60">.dev</span>
     </Link>
   );
 }
@@ -142,7 +142,7 @@ function NavItems({
                   : "min-h-11 px-3 py-2.5 text-sm",
                 isActive
                   ? "border-term/30 bg-term/10 text-term"
-                  : "border-transparent text-crema/55 hover:text-crema",
+                  : "border-transparent text-crema/70 hover:text-crema",
               )}
             >
               <Icon
@@ -218,7 +218,7 @@ export function Header() {
 
           <span className="h-4 w-px bg-crema/15" aria-hidden />
 
-          <p className="truncate font-mono text-xs text-crema/55">
+          <p className="truncate font-mono text-xs text-crema/70">
             {PERSONAL.role}
           </p>
 

@@ -12,7 +12,7 @@ export function Footer() {
           <p className="font-sans text-sm font-semibold text-crema">
             {PERSONAL.name}
           </p>
-          <p className="font-mono text-[11px] text-crema/45">
+          <p className="font-mono text-[11px] text-crema/65">
             {PERSONAL.role}
           </p>
         </div>
@@ -58,7 +58,7 @@ export function Footer() {
         </Button>
       </div>
 
-      <p className="mx-auto mt-6 max-w-6xl font-mono text-[11px] text-crema/30">
+      <p className="mx-auto mt-6 max-w-6xl font-mono text-[11px] text-crema/60">
         Ingeniería backend · cloud · integración. © 2026 {PERSONAL.name} · cantaro.dev
       </p>
     </footer>

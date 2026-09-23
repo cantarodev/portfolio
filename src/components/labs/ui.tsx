@@ -21,7 +21,7 @@ export function ControlGroup<T extends string | number>({
 }) {
   return (
     <div role="group" aria-label={label} className="flex flex-col gap-2">
-      <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-crema/50 uppercase">
+      <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-crema/65 uppercase">
         {label}
         {tip && <Term tip={tip}>?</Term>}
       </span>
@@ -124,7 +124,7 @@ export function Metric({
   const display = Number.isFinite(value) ? Math.round(value) : 0;
   return (
     <div className="rounded-lg border border-crema/10 bg-ink/40 p-3">
-      <p className="font-mono text-[10px] tracking-widest text-crema/45 uppercase">
+      <p className="font-mono text-[10px] tracking-widest text-crema/65 uppercase">
         {label}
       </p>
       <p className="mt-1 font-mono text-xl text-crema tabular-nums">{display}</p>
@@ -160,7 +160,7 @@ const EVENT_TONE: Record<SimEvent["kind"], string> = {
   worker_down: "text-term-red",
   worker_up: "text-term",
   scale: "text-term-cyan",
-  info: "text-crema/50",
+  info: "text-crema/65",
 };
 
 export function EventLog({ events }: { events: SimEvent[] }) {
@@ -171,12 +171,12 @@ export function EventLog({ events }: { events: SimEvent[] }) {
       aria-label="Registro de eventos de la simulación"
     >
       {events.length === 0 ? (
-        <p className="text-crema/30">Aún no hay eventos. Inicia la simulación.</p>
+        <p className="text-crema/60">Aún no hay eventos. Inicia la simulación.</p>
       ) : (
         <ul className="space-y-1">
           {events.map((event) => (
             <li key={event.id} className={cn("flex gap-2", EVENT_TONE[event.kind])}>
-              <span className="shrink-0 tabular-nums text-crema/25">
+              <span className="shrink-0 tabular-nums text-crema/60">
                 {event.time.toFixed(1)}s
               </span>
               <span className="break-words">{event.message}</span>
@@ -222,7 +222,7 @@ export function SimTrace({
         <div className="min-w-0 flex-1 rounded-lg border border-term/25 bg-ink/50 p-3">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[11px] text-term">COLA</span>
-            <span className="font-mono text-[10px] text-crema/40 tabular-nums">
+            <span className="font-mono text-[10px] text-crema/60 tabular-nums">
               {queueDepth} en cola
             </span>
           </div>
@@ -238,12 +238,12 @@ export function SimTrace({
               />
             ))}
             {queueDepth > dots && (
-              <span className="font-mono text-[10px] text-crema/40">
+              <span className="font-mono text-[10px] text-crema/60">
                 +{queueDepth - dots}
               </span>
             )}
             {queueDepth === 0 && (
-              <span className="font-mono text-[10px] text-crema/30">vacía</span>
+              <span className="font-mono text-[10px] text-crema/60">vacía</span>
             )}
           </div>
         </div>
@@ -321,7 +321,7 @@ function TraceNode({
       >
         {label}
       </p>
-      <p className="font-mono text-[10px] text-crema/40">{subtitle}</p>
+      <p className="font-mono text-[10px] text-crema/60">{subtitle}</p>
     </div>
   );
 }
@@ -330,7 +330,7 @@ function TraceArrow() {
   return (
     <span
       aria-hidden
-      className="self-center font-mono text-crema/25 sm:rotate-0"
+      className="self-center font-mono text-crema/60 sm:rotate-0"
     >
       →
     </span>
@@ -396,7 +396,7 @@ export function UnderTheHood() {
           key={layer}
           className="flex items-center gap-3 rounded-lg border border-crema/10 bg-ink/40 px-3 py-2 font-mono text-[11px] text-crema/70"
         >
-          <span className="text-crema/30">{String(index + 1).padStart(2, "0")}</span>
+          <span className="text-crema/60">{String(index + 1).padStart(2, "0")}</span>
           {layer}
         </li>
       ))}

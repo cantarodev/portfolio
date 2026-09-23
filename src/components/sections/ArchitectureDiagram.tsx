@@ -53,7 +53,7 @@ export function ArchitectureDiagram() {
                     <h3 className="font-mono text-sm font-medium text-crema">
                       {stage.label}
                     </h3>
-                    <span className="font-mono text-[10px] tracking-widest text-crema/30 uppercase">
+                    <span className="font-mono text-[10px] tracking-widest text-crema/60 uppercase">
                       {GROUP_LABELS[stage.group ?? "processing"]}
                     </span>
                   </div>

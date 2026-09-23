@@ -99,7 +99,7 @@ export function SystemFlowCard({ className }: { className?: string }) {
 
         {/* Telemetría de microservicios */}
         <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-term/10 pt-4 font-mono text-[10px] text-crema/70">
-          <span className="tracking-widest text-crema/40 uppercase">
+          <span className="tracking-widest text-crema/60 uppercase">
             Servicios
           </span>
           {CLOUD_SERVICES.map((service) => (

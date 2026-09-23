@@ -16,7 +16,7 @@ export function LabCard({
 }) {
   const Icon = ICONS[lab.icon];
   return (
-    <li className="flex min-w-0 flex-col rounded-xl border border-term/15 bg-term/[0.03] p-5 transition-colors hover:border-term/35">
+    <article className="flex h-full min-w-0 flex-col rounded-xl border border-term/15 bg-term/[0.03] p-5 transition-colors hover:border-term/35">
       <div className="flex items-center gap-2.5">
         <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-term/20 bg-ink/50">
           <Icon className="size-4 text-term" />
@@ -30,7 +30,7 @@ export function LabCard({
         {lab.question}
       </p>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-crema/45">
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-crema/65">
         <span>{lab.difficulty}</span>
         <span className="inline-flex items-center gap-1">
           <Clock className="size-3" /> {lab.duration}
@@ -54,6 +54,6 @@ export function LabCard({
       >
         Jugar <ArrowRight className="size-3.5" />
       </Link>
-    </li>
+    </article>
   );
 }

@@ -20,11 +20,11 @@ export function LabShell({
       <div className="mb-6 flex flex-wrap items-center gap-2 font-mono text-[11px]">
         <Link
           href="/cantaro-labs"
-          className="inline-flex items-center gap-1.5 text-crema/50 transition-colors hover:text-term"
+          className="inline-flex items-center gap-1.5 text-crema/65 transition-colors hover:text-term"
         >
           <ArrowLeft className="size-3.5" /> cantaro-labs
         </Link>
-        <span className="text-crema/25">/</span>
+        <span className="text-crema/60">/</span>
         <span className="text-term/80">{title}</span>
       </div>
 

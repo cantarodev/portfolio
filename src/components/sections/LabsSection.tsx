@@ -17,9 +17,11 @@ export function LabsSection() {
     >
       <ul className="grid gap-4 sm:grid-cols-2">
         {LABS.map((lab, index) => (
-          <Reveal key={lab.id} delay={index * 0.07}>
-            <LabCard lab={lab} />
-          </Reveal>
+          <li key={lab.id} className="min-w-0">
+            <Reveal delay={index * 0.07} className="h-full">
+              <LabCard lab={lab} />
+            </Reveal>
+          </li>
         ))}
       </ul>
 
