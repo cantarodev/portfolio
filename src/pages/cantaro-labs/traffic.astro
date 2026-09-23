@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { TrafficLabPage } from "@/components/labs/LabPages";
+---
+
+<Layout
+  title="Laboratorio de Tráfico — Jhon Cantaro"
+  description="Escala horizontalmente: compara carga, capacidad, throughput y back-pressure."
+>
+  <TrafficLabPage client:only="react" />
+</Layout>

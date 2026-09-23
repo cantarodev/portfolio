@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", ui-monospace, monospace;
+
+  --color-ink: #050807;
+  --color-espresso: #100b07;
+  --color-bark: #1e150f;
+  --color-soil: #3a271b;
+  --color-crema: #e8ece9;
+  --color-latte: #cbb195;
+  --color-cherry: #e0453a;
+  --color-cherry-dark: #8f251d;
+  --color-leaf: #3f9c5a;
+  --color-leaf-dark: #1f5c38;
+  --color-sky: #4cc9f0;
+  --color-gold: #e0a94a;
+  /* Secundario cálido — uso muy moderado. */
+  --color-copper: #c98a4b;
+
+  /* Accent palette — verde neón */
+  --color-term: #39ff88;
+  --color-term-dim: #1fb968;
+  --color-term-cyan: #39d0d8;
+  --color-term-amber: #d29922;
+  --color-term-red: #f85149;
+  --color-term-bg: #050807;
+  --color-term-panel: #0a120e;
+}
+
+/* ---------------- Light theme -----------------------------------------
+   Se sobreescriben los mismos tokens bajo `html.light`, así todas las
+   utilidades (bg-ink, text-crema, border-term…) se re-tematizan solas. */
+html.light {
+  --color-ink: #f4f1de;
+  --color-espresso: #ece7d2;
+  --color-bark: #e3dcc4;
+  --color-soil: #d3c7ab;
+  --color-crema: #1c1a15;
+  --color-latte: #6b5e46;
+
+  --color-term: #0a7d47;
+  --color-term-dim: #076037;
+  --color-term-cyan: #0e7490;
+  --color-term-amber: #a16207;
+  --color-term-red: #b91c1c;
+  --color-term-bg: #f4f1de;
+  --color-term-panel: #ece7d2;
+
+  --color-copper: #92551c;
+  --color-gold: #a16207;
+  --color-leaf: #2f7d46;
+  --color-sky: #0369a1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-crema);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-term);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-term);
+    color: var(--color-ink);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-soil);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-term-dim);
+  }
+}
+
+/* ---- Composed utilities ------------------------------------------------ */
+
+.grid-floor {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-crema) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-crema) 6%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.lite-hills {
+  background:
+    radial-gradient(120% 80% at 50% 120%, #14301f 0%, transparent 60%),
+    radial-gradient(90% 70% at 15% 115%, #16341f 0%, transparent 55%),
+    radial-gradient(90% 70% at 85% 118%, #1c4a2c 0%, transparent 55%),
+    linear-gradient(180deg, #050807 0%, #08100b 55%, #0d1811 100%);
+  transition: background 0.35s ease;
+}
+
+html.light .lite-hills {
+  background:
+    radial-gradient(120% 80% at 50% 120%, #cfe0b8 0%, transparent 60%),
+    radial-gradient(90% 70% at 15% 115%, #dbe7c6 0%, transparent 55%),
+    radial-gradient(90% 70% at 85% 118%, #e8eed4 0%, transparent 55%),
+    linear-gradient(180deg, #f7f4e4 0%, #f1ecd8 55%, #e9e2c9 100%);
+}
+
+

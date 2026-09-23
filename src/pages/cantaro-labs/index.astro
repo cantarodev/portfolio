@@ -1,0 +1,79 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { LabCard } from "@/components/labs/LabCard";
+import { LAB_NOTES, LABS, SITE } from "@/lib/constants";
+---
+
+<Layout
+  title="Cantaro Labs — experimentos de ingeniería interactivos"
+  description="Experimentos interactivos sobre colas, tráfico, fallos y sistemas distribuidos. Rompe un backend simulado y observa cómo se recupera."
+>
+  <div class="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+    <header class="max-w-3xl">
+      <p class="font-mono text-[11px] tracking-[0.3em] text-term/70 uppercase">
+        Cantaro Labs
+      </p>
+      <h1
+        class="mt-3 font-sans text-3xl font-semibold tracking-tight text-balance text-crema sm:text-5xl"
+      >
+        Los sistemas se entienden mejor cuando puedes romperlos.
+      </h1>
+      <p class="mt-4 text-sm leading-relaxed text-crema/60 sm:text-base">
+        Experimentos interactivos sobre colas, tráfico y fallos. Cada laboratorio
+        corre una simulación real, no una animación aleatoria.
+      </p>
+    </header>
+
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+      {
+        LABS.map((lab) => (
+          <LabCard lab={lab} />
+        ))
+      }
+    </ul>
+
+    <section class="mt-16" aria-labelledby="lab-notes-title">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <h2
+          id="lab-notes-title"
+          class="font-sans text-2xl font-semibold text-crema"
+        >
+          Notas de laboratorio
+        </h2>
+        <p class="font-mono text-[11px] text-crema/40">construyendo en público</p>
+      </div>
+      <ul class="mt-6 grid gap-4 md:grid-cols-3">
+        {
+          LAB_NOTES.map((note) => (
+            <li class="rounded-xl border border-crema/10 bg-crema/[0.02] p-5">
+              <span class="font-mono text-[10px] tracking-widest text-term/70 uppercase">
+                {note.tag}
+              </span>
+              <h3 class="mt-2 font-sans text-base font-semibold text-crema">
+                {note.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-crema/60">
+                {note.body}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="mt-12 flex flex-wrap gap-3">
+      <a
+        href={LABS[0].href}
+        class="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-4 py-2 font-mono text-xs text-term transition-colors hover:bg-term/20"
+      >
+        Empezar por el Laboratorio de Colas →
+      </a>
+      <a
+        href="/"
+        class="inline-flex items-center gap-1.5 rounded border border-crema/20 px-4 py-2 font-mono text-xs text-crema/70 transition-colors hover:border-crema/40 hover:text-crema"
+      >
+        Volver a {SITE.name}
+      </a>
+    </div>
+  </div>
+</Layout>

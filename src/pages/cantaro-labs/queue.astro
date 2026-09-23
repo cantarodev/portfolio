@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { QueueLabPage } from "@/components/labs/LabPages";
+---
+
+<Layout
+  title="Laboratorio de Colas — Jhon Cantaro"
+  description="Simula colas, back-pressure, reintentos y dead-letter queues en un backend event-driven."
+>
+  <QueueLabPage client:only="react" />
+</Layout>

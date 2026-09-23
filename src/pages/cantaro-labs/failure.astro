@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { FailureLabPage } from "@/components/labs/LabPages";
+---
+
+<Layout
+  title="Laboratorio de Fallos — Jhon Cantaro"
+  description="Inyecta fallos, observa reintentos, dead-letter queues y recuperación."
+>
+  <FailureLabPage client:only="react" />
+</Layout>
