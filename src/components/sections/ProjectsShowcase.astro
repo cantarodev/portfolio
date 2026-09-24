@@ -1,5 +1,11 @@
 ---
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ExternalLink,
+  GitBranch,
+  Sparkles,
+} from "lucide-react";
 
 import { GithubIcon } from "@/components/ui/brand-icons";
 import Section from "@/components/sections/Section.astro";
@@ -7,6 +13,8 @@ import { PERSONAL, PROJECTS, SYSTEM_FLOW } from "@/lib/constants";
 
 const cardLink =
   "inline-flex items-center gap-1.5 rounded-lg border border-term/45 bg-term/10 px-3.5 py-2 font-mono text-[11px] text-term transition-all duration-200 hover:border-term/70 hover:bg-term/20";
+const ghostLink =
+  "inline-flex items-center gap-1.5 rounded-lg border border-crema/20 bg-ink/30 px-3.5 py-2 font-mono text-[11px] text-crema/80 transition-all duration-200 hover:border-crema/40 hover:text-crema";
 ---
 
 <Section
@@ -28,6 +36,13 @@ const cardLink =
             aria-hidden
           >
             <div class="grid-floor absolute inset-0 opacity-20" />
+
+            {project.openSource && (
+              <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-2 py-0.5 font-mono text-[9px] tracking-wide text-term uppercase">
+                <GitBranch className="size-3" aria-hidden /> Open Source · Reference
+              </span>
+            )}
+
             <ol class="absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1 font-mono text-[9px]">
               {SYSTEM_FLOW.map((step, index) => (
                 <li class="flex items-center gap-1">
@@ -43,33 +58,87 @@ const cardLink =
           </div>
 
           <div class="flex flex-1 flex-col p-5">
-            <div class="flex items-center gap-2">
+            {project.category && (
+              <p class="font-mono text-[10px] tracking-widest text-crema/60 uppercase">
+                {project.category}
+              </p>
+            )}
+
+            <div class="mt-1.5 flex items-center gap-2">
               {project.featured && (
                 <Sparkles className="size-3.5 text-term" aria-hidden />
               )}
-              <h3 class="font-sans text-lg font-semibold text-crema">
+              <h3 class="font-sans text-lg leading-snug font-semibold text-crema">
                 {project.name}
               </h3>
             </div>
-            <p class="mt-0.5 font-mono text-[11px] text-term/75">
+
+            <p class="mt-1 font-mono text-[11px] text-term/75">
               {project.tagline}
             </p>
-            <p class="mt-3 line-clamp-2 flex-1 text-sm leading-relaxed text-crema/60">
+
+            <p class="mt-3 line-clamp-2 text-sm leading-relaxed text-crema/60">
               {project.description}
             </p>
 
+            {project.metrics && (
+              <ul class="mt-4 flex flex-wrap gap-1.5">
+                {project.metrics.map((metric) => (
+                  <li class="inline-flex items-center gap-1.5 rounded border border-term/25 bg-term/[0.06] px-2 py-0.5 font-mono text-[10px] text-term">
+                    <span class="font-medium">{metric.value}</span>
+                    <span class="text-crema/60">{metric.label}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <ul class="mt-4 flex flex-wrap gap-1.5">
-              {project.stack.slice(0, 4).map((tech) => (
+              {project.stack.slice(0, 5).map((tech) => (
                 <li class="rounded border border-crema/15 bg-ink/40 px-2 py-0.5 font-mono text-[10px] text-crema/70">
                   {tech}
                 </li>
               ))}
             </ul>
 
-            <div class="mt-5 flex items-center gap-2">
+            {project.highlights && (
+              <details class="group mt-4 rounded-lg border border-crema/10 bg-ink/40">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2 font-mono text-[10px] tracking-wide text-crema/60 uppercase transition-colors hover:text-crema [&::-webkit-details-marker]:hidden">
+                  Aspectos clave
+                  <ChevronDown
+                    className="size-3.5 transition-transform group-open:rotate-180"
+                    aria-hidden
+                  />
+                </summary>
+                <ul class="space-y-1.5 border-t border-crema/10 px-3 py-2.5 text-xs leading-relaxed text-crema/70">
+                  {project.highlights.map((highlight) => (
+                    <li class="flex gap-2">
+                      <span
+                        class="mt-1.5 size-1.5 shrink-0 rounded-full bg-term/70"
+                        aria-hidden
+                      />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+
+            <div class="mt-5 flex flex-wrap items-center gap-2">
               <a href={`/projects/${project.id}`} class={cardLink}>
                 Ver caso de estudio <ArrowUpRight className="size-3.5" aria-hidden />
               </a>
+
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  class={ghostLink}
+                >
+                  Demo <ExternalLink className="size-3" aria-hidden />
+                </a>
+              )}
+
               {project.repo && (
                 <a
                   href={project.repo}
@@ -100,9 +169,10 @@ const cardLink =
         href={PERSONAL.github}
         target="_blank"
         rel="noreferrer"
-        class="inline-flex w-fit items-center gap-1.5 rounded-lg border border-crema/20 bg-ink/30 px-3.5 py-2 font-mono text-[11px] text-crema/80 transition-all duration-200 hover:border-crema/40 hover:text-crema"
+        class={`${ghostLink} w-fit`}
       >
-        <GithubIcon /> Ver repositorios <ArrowUpRight className="size-3.5" aria-hidden />
+        <GithubIcon /> Ver repositorios
+        <ArrowUpRight className="size-3.5" aria-hidden />
       </a>
     </li>
   </ul>

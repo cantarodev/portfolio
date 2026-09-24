@@ -36,17 +36,43 @@ const ctaOutline =
       <p
         class="font-mono text-[11px] tracking-[0.3em] text-term/70 uppercase"
       >
-        Caso de estudio
+        {project.category ?? "Caso de estudio"}
       </p>
-      <h1
-        class="mt-3 font-sans text-3xl font-semibold tracking-tight text-crema sm:text-5xl"
-      >
-        {project.name}
-      </h1>
+
+      <div class="mt-3 flex flex-wrap items-center gap-3">
+        <h1
+          class="font-sans text-3xl font-semibold tracking-tight text-crema sm:text-5xl"
+        >
+          {project.name}
+        </h1>
+        {project.openSource && (
+          <span class="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-2.5 py-1 font-mono text-[10px] text-term uppercase">
+            Open Source · Reference
+          </span>
+        )}
+      </div>
+
       <p class="mt-3 font-mono text-sm text-term/85">{project.tagline}</p>
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-crema/70 sm:text-base">
         {project.description}
       </p>
+
+      {
+        project.metrics && (
+          <dl class="mt-7 grid grid-cols-3 gap-3 sm:max-w-lg">
+            {project.metrics.map((metric) => (
+              <div class="rounded-lg border border-term/20 bg-term/[0.05] px-3 py-2.5 text-center">
+                <dt class="font-mono text-[9px] tracking-wide text-crema/60 uppercase">
+                  {metric.label}
+                </dt>
+                <dd class="mt-1 font-sans text-lg font-semibold text-term">
+                  {metric.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
 
       <ul class="mt-6 flex flex-wrap gap-1.5">
         {
@@ -110,11 +136,36 @@ const ctaOutline =
       )
     }
 
+    {
+      !featured && project.highlights && (
+        <section class="mt-12">
+          <h2 class="font-mono text-[11px] tracking-widest text-term/70 uppercase">
+            Aspectos clave
+          </h2>
+          <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+            {project.highlights.map((item) => (
+              <li class="flex gap-2.5 rounded-lg border border-crema/10 bg-ink/40 px-3.5 py-3 text-sm leading-relaxed text-crema/70">
+                <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-term" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
     <div class="mt-12 flex flex-wrap gap-3">
       {
         project.repo && (
           <a href={project.repo} target="_blank" rel="noreferrer" class={ctaPrimary}>
             <GithubIcon className="size-4" /> Repositorio
+          </a>
+        )
+      }
+      {
+        project.demo && (
+          <a href={project.demo} target="_blank" rel="noreferrer" class={ctaPrimary}>
+            Ver en vivo ↗
           </a>
         )
       }

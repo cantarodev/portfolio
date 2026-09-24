@@ -3,9 +3,10 @@ import type {
   CaseStudyBlock,
   CloudService,
   Principle,
-  ProjectDetail,
   SkillGroup,
 } from "@/lib/types";
+
+export { PROJECTS } from "@/data/projects";
 
 export const SITE = {
   name: "cantaro.dev",
@@ -359,24 +360,4 @@ export const CLOUD_SERVICES: CloudService[] = [
   },
 ];
 
-export const PROJECTS: ProjectDetail[] = [
-  {
-    id: "linkedin-market-intelligence",
-    name: "LinkedIn Market Intelligence",
-    tagline:
-      "Extensión de Chrome + Backend event-driven + Infraestructura en AWS",
-    description:
-      "Extensión de Chrome más una API de ingesta que procesa datos del mercado laboral de forma asíncrona con AWS SQS y PostgreSQL.",
-    stack: [
-      "Chrome Extension",
-      "TypeScript",
-      "Node.js",
-      "AWS SQS",
-      "PostgreSQL",
-      "Docker",
-      "Terraform",
-    ],
-    repo: "https://github.com/cantarodev",
-    featured: true,
-  },
-];
+
