@@ -8,7 +8,6 @@ import {
   Metric,
   MetricBar,
   MetricGrid,
-  ShareBar,
   SimTrace,
   Term,
 } from "@/components/labs/ui";
@@ -21,7 +20,7 @@ import {
   trafficPreset,
   type TrafficValue,
 } from "@/lib/sim/presets";
-import { decodeQueryString, encodeQueueParams } from "@/lib/sim/url";
+import { decodeQueryString } from "@/lib/sim/url";
 
 const MAX_ARRIVAL = 45;
 
@@ -59,7 +58,7 @@ export function TrafficLab() {
         <button
           type="button"
           onClick={running ? pause : start}
-          className="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-3 py-1.5 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
+          className="inline-flex min-h-10 items-center gap-1.5 rounded border border-term/40 bg-term/10 px-4 py-2 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
         >
           {running ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
           {running ? "Pausar" : "Iniciar"}
@@ -70,7 +69,7 @@ export function TrafficLab() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <div className="flex min-w-0 flex-col gap-4">
+        <div className="order-2 flex min-w-0 flex-col gap-4 lg:order-1">
           <SimTrace workers={snapshot.workers} queueDepth={snapshot.queueDepth} />
 
           <div className="rounded-xl border border-term/15 bg-term/[0.03] p-4">
@@ -129,7 +128,7 @@ export function TrafficLab() {
           </MetricGrid>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-4">
+        <div className="order-1 flex min-w-0 flex-col gap-4 lg:order-2">
           <div className="rounded-xl border border-crema/10 bg-ink/40 p-4">
             <h2 className="font-sans text-sm font-semibold text-crema">
               Controles
@@ -171,11 +170,6 @@ export function TrafficLab() {
             </div>
           </div>
 
-          <ShareBar
-            path="/cantaro-labs/traffic"
-            query={encodeQueueParams(config)}
-            title="Cantaro Labs — reto de tráfico"
-          />
         </div>
       </div>
 

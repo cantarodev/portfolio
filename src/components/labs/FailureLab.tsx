@@ -3,30 +3,17 @@ import { Pause, Play, RotateCcw } from "lucide-react";
 
 import {
   ActionButton,
-  CodeBlock,
   Disclosure,
   EventLog,
   Metric,
   MetricGrid,
-  ShareBar,
   SimTrace,
   Term,
 } from "@/components/labs/ui";
 import { useSimulation } from "@/components/labs/use-simulation";
 import type { QueueConfig } from "@/lib/sim/queue-engine";
 import { BASE_CONFIG } from "@/lib/sim/presets";
-import { decodeQueryString, encodeQueueParams } from "@/lib/sim/url";
-
-const RECOVERY_EXCERPT = `// El manejo de fallos vive en el límite del worker
-procesarTrabajo(message) {
-  try        { return await manejar(message) }
-  catch (e)  {
-    if (backoff.programado(message)) return   // reintentar luego
-    if (message.attempts >= maxRetries)       // envenenado
-      return dlq.publicar(message)
-    throw e
-  }
-}`;
+import { decodeQueryString } from "@/lib/sim/url";
 
 function StatusPill({ label, healthy }: { label: string; healthy: boolean }) {
   return (
@@ -80,7 +67,7 @@ export function FailureLab() {
         <button
           type="button"
           onClick={running ? pause : start}
-          className="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-3 py-1.5 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
+          className="inline-flex min-h-10 items-center gap-1.5 rounded border border-term/40 bg-term/10 px-4 py-2 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
         >
           {running ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
           {running ? "Pausar" : "Iniciar"}
@@ -121,7 +108,7 @@ export function FailureLab() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <div className="flex min-w-0 flex-col gap-4">
+        <div className="order-2 flex min-w-0 flex-col gap-4 lg:order-1">
           <SimTrace
             workers={snapshot.workers}
             queueDepth={snapshot.queueDepth}
@@ -169,7 +156,7 @@ export function FailureLab() {
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-4">
+        <div className="order-1 flex min-w-0 flex-col gap-4 lg:order-2">
           <div className="rounded-xl border border-term-red/20 bg-term-red/[0.04] p-4">
             <h2 className="font-sans text-sm font-semibold text-crema">
               Inyectar fallo
@@ -211,50 +198,14 @@ export function FailureLab() {
               >
                 Restaurar BD
               </ActionButton>
-              <ActionButton
-                tone="danger"
-                onClick={() => {
-                  update({ processingFactor: 3 });
-                  setLastInjection(
-                    "Base de datos lenta — el tiempo de proceso se triplica y el throughput cae.",
-                  );
-                }}
-              >
-                BD lenta
-              </ActionButton>
               <ActionButton onClick={() => run((engine) => engine.killWorker())}>
                 Matar worker
               </ActionButton>
               <ActionButton onClick={() => run((engine) => engine.restartWorker())}>
                 Reiniciar worker
               </ActionButton>
-              <ActionButton
-                tone="danger"
-                onClick={() => {
-                  update({ failureRate: 0.25 });
-                  setLastInjection(
-                    "Fallos transitorios al 25% (timeout / rate limit / red) — estos se reintentan.",
-                  );
-                }}
-              >
-                Transitorios 25%
-              </ActionButton>
-              <ActionButton
-                tone="danger"
-                onClick={() => {
-                  update({ dataErrorRate: 0.25 });
-                  setLastInjection(
-                    "Datos inválidos al 25% — los fallos permanentes no se reintentan y van directo a la DLQ.",
-                  );
-                }}
-              >
-                Datos inválidos 25%
-              </ActionButton>
               <ActionButton onClick={() => update({ failureRate: 0, dataErrorRate: 0 })}>
                 Limpiar fallos
-              </ActionButton>
-              <ActionButton onClick={() => run((engine) => engine.prefill(40))}>
-                Backlog +40
               </ActionButton>
               <ActionButton onClick={() => run((engine) => engine.retryFailed())}>
                 Reintentar DLQ
@@ -266,14 +217,6 @@ export function FailureLab() {
               </p>
             )}
           </div>
-
-          <CodeBlock code={RECOVERY_EXCERPT} />
-
-          <ShareBar
-            path="/cantaro-labs/failure"
-            query={encodeQueueParams(config)}
-            title="Cantaro Labs — reto de fallos"
-          />
         </div>
       </div>
 

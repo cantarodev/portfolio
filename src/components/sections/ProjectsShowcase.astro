@@ -1,0 +1,109 @@
+---
+import { ArrowUpRight, Sparkles } from "lucide-react";
+
+import { GithubIcon } from "@/components/ui/brand-icons";
+import Section from "@/components/sections/Section.astro";
+import { PERSONAL, PROJECTS, SYSTEM_FLOW } from "@/lib/constants";
+
+const cardLink =
+  "inline-flex items-center gap-1.5 rounded-lg border border-term/45 bg-term/10 px-3.5 py-2 font-mono text-[11px] text-term transition-all duration-200 hover:border-term/70 hover:bg-term/20";
+---
+
+<Section
+  id="projects"
+  eyebrow="Proyectos"
+  title="Lo que he construido"
+  intro="Sistemas reales, con arquitectura y decisiones técnicas."
+  class="border-t border-crema/5"
+>
+  <ul class="grid gap-5 sm:grid-cols-2">
+    {
+      PROJECTS.map((project) => (
+        <li class="flex min-w-0 flex-col overflow-hidden rounded-xl border border-term/15 bg-term/[0.03] transition-colors hover:border-term/40">
+          <div
+            class="relative h-28 overflow-hidden border-b border-term/10"
+            style={`background-image: radial-gradient(120% 120% at 15% 0%, ${
+              project.featured ? "#39ff8822" : "#c98a4b22"
+            } 0%, transparent 55%), linear-gradient(135deg, #0a1712 0%, #050807 60%)`}
+            aria-hidden
+          >
+            <div class="grid-floor absolute inset-0 opacity-20" />
+            <ol class="absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1 font-mono text-[9px]">
+              {SYSTEM_FLOW.map((step, index) => (
+                <li class="flex items-center gap-1">
+                  <span class="rounded border border-crema/15 bg-ink/60 px-1.5 py-0.5 text-crema/70">
+                    {step}
+                  </span>
+                  {index < SYSTEM_FLOW.length - 1 && (
+                    <span class="text-term/40">→</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="flex flex-1 flex-col p-5">
+            <div class="flex items-center gap-2">
+              {project.featured && (
+                <Sparkles className="size-3.5 text-term" aria-hidden />
+              )}
+              <h3 class="font-sans text-lg font-semibold text-crema">
+                {project.name}
+              </h3>
+            </div>
+            <p class="mt-0.5 font-mono text-[11px] text-term/75">
+              {project.tagline}
+            </p>
+            <p class="mt-3 line-clamp-2 flex-1 text-sm leading-relaxed text-crema/60">
+              {project.description}
+            </p>
+
+            <ul class="mt-4 flex flex-wrap gap-1.5">
+              {project.stack.slice(0, 4).map((tech) => (
+                <li class="rounded border border-crema/15 bg-ink/40 px-2 py-0.5 font-mono text-[10px] text-crema/70">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-5 flex items-center gap-2">
+              <a href={`/projects/${project.id}`} class={cardLink}>
+                Ver caso de estudio <ArrowUpRight className="size-3.5" aria-hidden />
+              </a>
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Repositorio de ${project.name}`}
+                  class="grid size-9 place-items-center rounded-lg border border-crema/15 text-crema/60 transition-all duration-200 hover:border-term/40 hover:text-term"
+                >
+                  <GithubIcon />
+                </a>
+              )}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+
+    <li class="flex flex-col justify-center gap-4 rounded-xl border border-crema/12 bg-crema/[0.02] p-6">
+      <div>
+        <h3 class="font-sans text-lg font-semibold text-crema">
+          Más proyectos y experimentos
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-crema/60">
+          Backend, infraestructura y utilidades en repositorios públicos.
+        </p>
+      </div>
+      <a
+        href={PERSONAL.github}
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex w-fit items-center gap-1.5 rounded-lg border border-crema/20 bg-ink/30 px-3.5 py-2 font-mono text-[11px] text-crema/80 transition-all duration-200 hover:border-crema/40 hover:text-crema"
+      >
+        <GithubIcon /> Ver repositorios <ArrowUpRight className="size-3.5" aria-hidden />
+      </a>
+    </li>
+  </ul>
+</Section>

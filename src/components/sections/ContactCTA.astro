@@ -1,0 +1,32 @@
+---
+import { ContactForm } from "@/components/contact/ContactForm";
+---
+
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  class="relative scroll-mt-32 border-t border-crema/5 py-12 sm:py-16"
+>
+  <div class="mx-auto w-full max-w-xl px-4 text-center sm:px-6">
+    <p class="font-mono text-[11px] tracking-[0.3em] text-term/70 uppercase">
+      Contacto
+    </p>
+
+    <h2
+      id="contact-title"
+      class="mt-3 font-sans text-3xl font-semibold tracking-tight text-balance text-crema sm:text-4xl"
+    >
+      Construyamos algo confiable
+    </h2>
+
+    <p class="mt-4 text-sm leading-relaxed text-crema/60 sm:text-base">
+      ¿Buscas un perfil Backend, Integración o Cloud Engineering?
+    </p>
+
+    <div
+      class="mt-8 rounded-xl border border-term/20 bg-ink/70 p-6 text-left shadow-2xl shadow-term/5 backdrop-blur-md sm:p-8"
+    >
+      <ContactForm client:visible />
+    </div>
+  </div>
+</section>

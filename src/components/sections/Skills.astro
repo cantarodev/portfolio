@@ -1,0 +1,30 @@
+---
+import Section from "@/components/sections/Section.astro";
+import { SKILL_GROUPS } from "@/lib/constants";
+---
+
+<Section
+  id="stack"
+  eyebrow="Capacidades"
+  title="Stack y capacidades"
+  intro="Agrupado por lo que puedo construir, no por logos."
+  class="border-t border-crema/5"
+>
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      SKILL_GROUPS.map((group) => (
+        <li class="flex min-w-0 flex-col rounded-xl border border-term/15 bg-term/[0.03] p-5">
+          <h3 class="font-mono text-sm font-medium text-term">{group.title}</h3>
+          <p class="mt-1.5 text-xs leading-relaxed text-crema/70">{group.summary}</p>
+          <ul class="mt-4 flex flex-wrap gap-1.5">
+            {group.items.map((item) => (
+              <li class="rounded border border-crema/15 bg-ink/40 px-2 py-0.5 font-mono text-[10px] text-crema/75">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

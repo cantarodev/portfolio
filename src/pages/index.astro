@@ -3,9 +3,14 @@ import Layout from "@/layouts/Layout.astro";
 import { SiteBackdrop } from "@/components/2d/SiteBackdrop";
 import { MobileSocialDock } from "@/components/MobileSocialDock";
 import { SocialSidebar } from "@/components/SocialSidebar";
-import { HomeSections } from "@/components/HomeSections";
-import { Footer } from "@/components/sections/Footer";
-import { Hero } from "@/components/sections/Hero";
+import ArchitectureSection from "@/components/sections/ArchitectureSection.astro";
+import ContactCTA from "@/components/sections/ContactCTA.astro";
+import Footer from "@/components/sections/Footer.astro";
+import Hero from "@/components/sections/Hero.astro";
+import LabsSection from "@/components/sections/LabsSection.astro";
+import Principles from "@/components/sections/Principles.astro";
+import ProjectsShowcase from "@/components/sections/ProjectsShowcase.astro";
+import Skills from "@/components/sections/Skills.astro";
 ---
 
 <Layout>
@@ -14,12 +19,19 @@ import { Hero } from "@/components/sections/Hero";
   <SocialSidebar />
   <MobileSocialDock />
 
-  <main id="main" class="pb-16 lg:pb-0">
-    {/* Hero: visible de inmediato */}
-    <Hero client:load />
-    {/* Resto de secciones: se hidratan al entrar en viewport */}
-    <HomeSections client:visible />
-  </main>
+  {/* Contenido por encima del fondo fijo (z-10) */}
+  <div class="relative z-10">
+    <main id="main" class="pb-16 lg:pb-0">
+      {/* HTML estático: Hero + secciones informativas */}
+      <Hero />
+      <ProjectsShowcase />
+      <LabsSection />
+      <ArchitectureSection />
+      <Principles />
+      <Skills />
+      <ContactCTA />
+    </main>
 
-  <Footer />
+    <Footer />
+  </div>
 </Layout>

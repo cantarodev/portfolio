@@ -1,0 +1,34 @@
+---
+import { ArrowRight } from "lucide-react";
+
+import { LabCard } from "@/components/labs/LabCard";
+import Section from "@/components/sections/Section.astro";
+import { LABS } from "@/lib/constants";
+---
+
+<Section
+  id="labs-home"
+  eyebrow="Cantaro Labs"
+  title="Juega con los sistemas que hay detrás del código."
+  intro="Experimentos interactivos sobre colas, tráfico y fallos — cada uno corre una simulación real que puedes romper."
+  class="border-t border-crema/5"
+>
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {
+      LABS.map((lab) => (
+        <li class="min-w-0">
+          <LabCard lab={lab} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-6">
+    <a
+      href="/cantaro-labs"
+      class="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-4 py-2 font-mono text-xs text-term transition-colors hover:bg-term/20"
+    >
+      Explorar Labs <ArrowRight className="size-3.5" aria-hidden />
+    </a>
+  </div>
+</Section>

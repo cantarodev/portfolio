@@ -1,5 +1,5 @@
-import { useId, useState } from "react";
-import { Check, Copy, ExternalLink, Info } from "lucide-react";
+import { useId } from "react";
+import { Info } from "lucide-react";
 
 import type { SimEvent, SimWorker } from "@/lib/sim/queue-engine";
 import { cn } from "@/lib/utils";
@@ -35,7 +35,7 @@ export function ControlGroup<T extends string | number>({
               aria-pressed={active}
               onClick={() => onChange(option.value)}
               className={cn(
-                "rounded border px-2.5 py-1.5 font-mono text-[11px] transition-colors",
+                "inline-flex min-h-9 items-center justify-center rounded border px-3 py-2 font-mono text-[11px] transition-colors",
                 active
                   ? "border-term/50 bg-term/15 text-term"
                   : "border-crema/15 bg-ink/40 text-crema/60 hover:border-crema/30 hover:text-crema/85",
@@ -76,7 +76,7 @@ export function ActionButton({
       disabled={disabled}
       aria-pressed={active}
       className={cn(
-        "rounded border bg-ink/40 px-2.5 py-1.5 font-mono text-[11px] transition-colors disabled:cursor-not-allowed disabled:opacity-40",
+        "inline-flex min-h-10 items-center justify-center gap-1.5 rounded border bg-ink/40 px-3 py-2 font-mono text-[11px] transition-colors disabled:cursor-not-allowed disabled:opacity-40",
         tones[tone],
       )}
     >
@@ -401,73 +401,6 @@ export function UnderTheHood() {
         </li>
       ))}
     </ol>
-  );
-}
-
-/* -- Share -------------------------------------------------------------- */
-
-export function ShareBar({
-  path,
-  query,
-  title,
-}: {
-  path: string;
-  query: string;
-  title: string;
-}) {
-  const [copied, setCopied] = useState(false);
-
-  function buildUrl() {
-    if (typeof window === "undefined") return path;
-    return `${window.location.origin}${path}${query ? `?${query}` : ""}`;
-  }
-
-  async function copy() {
-    const url = buildUrl();
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      window.prompt("Copia este enlace", url);
-    }
-  }
-
-  const url = buildUrl();
-  const encoded = encodeURIComponent(url);
-  const text = encodeURIComponent(title);
-
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <ActionButton onClick={copy} tone="success">
-        {copied ? <Check className="inline size-3" /> : <Copy className="inline size-3" />}{" "}
-        {copied ? "Copiado" : "Copiar enlace"}
-      </ActionButton>
-      <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-1.5 rounded border border-crema/20 bg-ink/40 px-2.5 py-1.5 font-mono text-[11px] text-crema/70 transition-colors hover:border-crema/40 hover:text-crema"
-      >
-        LinkedIn <ExternalLink className="size-3" />
-      </a>
-      <a
-        href={`https://twitter.com/intent/tweet?url=${encoded}&text=${text}`}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-1.5 rounded border border-crema/20 bg-ink/40 px-2.5 py-1.5 font-mono text-[11px] text-crema/70 transition-colors hover:border-crema/40 hover:text-crema"
-      >
-        X <ExternalLink className="size-3" />
-      </a>
-      <a
-        href={`https://www.reddit.com/submit?url=${encoded}&title=${text}`}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-1.5 rounded border border-crema/20 bg-ink/40 px-2.5 py-1.5 font-mono text-[11px] text-crema/70 transition-colors hover:border-crema/40 hover:text-crema"
-      >
-        Reddit <ExternalLink className="size-3" />
-      </a>
-    </div>
   );
 }
 

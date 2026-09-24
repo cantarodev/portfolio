@@ -1,0 +1,85 @@
+---
+import { Mail, MoveDown } from "lucide-react";
+
+import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
+import { PERSONAL } from "@/lib/constants";
+
+const year = new Date().getFullYear();
+
+const linkClass =
+  "inline-flex items-center gap-1.5 text-crema/70 transition-colors hover:text-term";
+---
+
+<footer class="px-4 pt-10 pb-24 sm:px-6 lg:pb-10">
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="rounded-lg border border-term/15 bg-ink/80 p-6 font-mono backdrop-blur-md"
+    >
+      {/* Superior: identidad + enlaces */}
+      <div
+        class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <p class="font-bold text-crema">{PERSONAL.name}</p>
+          <p class="mt-0.5 text-sm text-crema/70">
+            Backend / Integration Engineer
+          </p>
+        </div>
+
+        <nav
+          aria-label="Redes y contacto"
+          class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm"
+        >
+          <a
+            href={PERSONAL.github}
+            target="_blank"
+            rel="noreferrer"
+            class={linkClass}
+          >
+            <GithubIcon className="size-4" /> GitHub
+          </a>
+          <a
+            href={PERSONAL.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            class={linkClass}
+          >
+            <LinkedinIcon className="size-4" /> LinkedIn
+          </a>
+          <a href={`mailto:${PERSONAL.email}`} class={linkClass}>
+            <Mail className="size-4" aria-hidden /> Email
+          </a>
+          <a
+            href={PERSONAL.resume}
+            download
+            class="inline-flex items-center gap-1 rounded border border-term/40 px-3 py-1.5 text-term transition-colors hover:bg-term/10"
+          >
+            [ <MoveDown className="size-3.5" aria-hidden /> CV ]
+          </a>
+        </nav>
+      </div>
+
+      {/* Separador */}
+      <div class="my-6 border-b border-term/15"></div>
+
+      {/* Frase */}
+      <p class="text-sm">
+        <span class="text-crema/60">&gt;_</span>
+        <span class="text-term"> from the finca to the cloud.</span>
+      </p>
+
+      {/* Inferior */}
+      <div
+        class="mt-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <div>
+          <p class="text-xs text-crema/60">
+            Backend · Cloud · Integration · Systems
+          </p>
+          <p class="mt-0.5 text-crema">cantaro.dev</p>
+        </div>
+        <p class="text-xs text-crema/60">© {year} {PERSONAL.name}</p>
+      </div>
+    </div>
+  </div>
+</footer>

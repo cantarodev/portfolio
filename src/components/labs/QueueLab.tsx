@@ -10,7 +10,6 @@ import {
   EventLog,
   Metric,
   MetricGrid,
-  ShareBar,
   SimTrace,
   Term,
   UnderTheHood,
@@ -34,7 +33,7 @@ import {
   trafficPreset,
 } from "@/lib/sim/presets";
 import { SCENARIOS, type SimScenario } from "@/lib/sim/scenarios";
-import { decodeQueryString, encodeQueueParams } from "@/lib/sim/url";
+import { decodeQueryString } from "@/lib/sim/url";
 
 const CODE_EXCERPT = `// lib/sim/queue-engine.ts (extracto)
 tick(dt) {
@@ -137,16 +136,13 @@ export function QueueLab() {
         <button
           type="button"
           onClick={running ? pause : start}
-          className="inline-flex items-center gap-1.5 rounded border border-term/40 bg-term/10 px-3 py-1.5 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
+          className="inline-flex min-h-10 items-center gap-1.5 rounded border border-term/40 bg-term/10 px-4 py-2 font-mono text-[11px] text-term transition-colors hover:bg-term/20"
         >
           {running ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
           {running ? "Pausar" : "Iniciar"}
         </button>
         <ActionButton onClick={handleReset}>
           <RotateCcw className="inline size-3" /> Reiniciar
-        </ActionButton>
-        <ActionButton onClick={() => run((engine) => engine.prefill(40))}>
-          Ráfaga +40
         </ActionButton>
         <ActionButton onClick={() => run((engine) => engine.createOrder(10))}>
           +10 pedidos
@@ -166,9 +162,6 @@ export function QueueLab() {
         <ActionButton onClick={() => run((engine) => engine.retryFailed())}>
           Reintentar fallidos
         </ActionButton>
-        <ActionButton onClick={() => run((engine) => engine.clearQueue())}>
-          Vaciar cola
-        </ActionButton>
       </div>
 
       {/* Vistas */}
@@ -181,8 +174,8 @@ export function QueueLab() {
             onClick={() => setView(entry)}
             className={
               view === entry
-                ? "rounded border border-term/50 bg-term/15 px-3 py-1.5 font-mono text-[11px] text-term"
-                : "rounded border border-crema/15 bg-ink/40 px-3 py-1.5 font-mono text-[11px] text-crema/60 hover:text-crema/85"
+                ? "inline-flex min-h-10 items-center rounded border border-term/50 bg-term/15 px-3.5 py-2 font-mono text-[11px] text-term"
+                : "inline-flex min-h-10 items-center rounded border border-crema/15 bg-ink/40 px-3.5 py-2 font-mono text-[11px] text-crema/60 hover:text-crema/85"
             }
           >
             {entry === "sim"
@@ -196,7 +189,7 @@ export function QueueLab() {
 
       {view === "sim" && (
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <div className="flex min-w-0 flex-col gap-4">
+          <div className="order-2 flex min-w-0 flex-col gap-4 lg:order-1">
             <SimTrace
               workers={snapshot.workers}
               queueDepth={snapshot.queueDepth}
@@ -224,7 +217,7 @@ export function QueueLab() {
             </div>
           </div>
 
-          <div className="flex min-w-0 flex-col gap-4">
+          <div className="order-1 flex min-w-0 flex-col gap-4 lg:order-2">
             <div className="rounded-xl border border-crema/10 bg-ink/40 p-4">
               <h2 className="font-sans text-sm font-semibold text-crema">
                 Controles
@@ -319,11 +312,6 @@ export function QueueLab() {
               </p>
             </div>
 
-            <ShareBar
-              path="/cantaro-labs/queue"
-              query={encodeQueueParams(config)}
-              title="Cantaro Labs — reto de colas"
-            />
           </div>
         </div>
       )}

@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { AlertTriangle, CheckCircle2, Loader2, Send } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  Loader2,
+  Mail,
+  MessageSquare,
+  Send,
+  User,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +18,9 @@ type Status = "idle" | "loading" | "success" | "error";
 
 /** Endpoint externo (Lambda/Function URL) para el formulario. */
 const ENDPOINT = import.meta.env.PUBLIC_CONTACT_ENDPOINT;
+
+const labelClass =
+  "flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-crema/60 uppercase";
 
 export function ContactForm({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -73,14 +84,19 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <div className={compact ? "grid gap-3" : "grid gap-3 sm:grid-cols-2"}>
-        <div className="flex flex-col gap-1.5">
-          <label
-            htmlFor="contact-name"
-            className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
-          >
-            Nombre
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <p className="flex items-center gap-2 font-mono text-[11px] text-crema/60">
+        <span className="relative flex size-1.5" aria-hidden>
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-term/70" />
+          <span className="relative inline-flex size-1.5 rounded-full bg-term" />
+        </span>
+        Respuesta directa a tu correo
+      </p>
+
+      <div className={compact ? "grid gap-4" : "grid gap-4 sm:grid-cols-2"}>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="contact-name" className={labelClass}>
+            <User className="size-3.5" aria-hidden /> Nombre
           </label>
           <Input
             id="contact-name"
@@ -90,12 +106,9 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
             placeholder="Tu nombre"
           />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label
-            htmlFor="contact-email"
-            className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
-          >
-            Email
+        <div className="flex flex-col gap-2">
+          <label htmlFor="contact-email" className={labelClass}>
+            <Mail className="size-3.5" aria-hidden /> Email
           </label>
           <Input
             id="contact-email"
@@ -108,12 +121,9 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="contact-message"
-          className="font-mono text-[11px] tracking-wide text-crema/65 uppercase"
-        >
-          Mensaje
+      <div className="flex flex-col gap-2">
+        <label htmlFor="contact-message" className={labelClass}>
+          <MessageSquare className="size-3.5" aria-hidden /> Mensaje
         </label>
         <Textarea
           id="contact-message"
@@ -134,11 +144,11 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         className="pointer-events-none absolute h-0 w-0 opacity-0"
       />
 
-      <div className="mt-1 flex flex-wrap items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Button
           type="submit"
           disabled={status === "loading"}
-          className="min-w-40"
+          className="h-11 w-full sm:w-auto sm:min-w-44"
         >
           {status === "loading" ? (
             <>
@@ -151,14 +161,14 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
           )}
         </Button>
 
-        <span aria-live="polite" className="min-h-4">
+        <span aria-live="polite" className="min-h-4 sm:text-right">
           {status === "success" && (
-            <span className="flex items-center gap-1.5 break-all text-xs text-term">
+            <span className="flex items-center gap-1.5 break-all text-xs text-term sm:justify-end">
               <CheckCircle2 className="size-4 shrink-0" /> {feedback}
             </span>
           )}
           {status === "error" && (
-            <span className="flex items-center gap-1.5 break-all text-xs text-term-red">
+            <span className="flex items-center gap-1.5 break-all text-xs text-term-red sm:justify-end">
               <AlertTriangle className="size-4 shrink-0" /> {feedback}
             </span>
           )}

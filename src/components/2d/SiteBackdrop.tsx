@@ -4,7 +4,10 @@
  */
 export function SiteBackdrop() {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden" aria-hidden>
+    <div
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      aria-hidden
+    >
       <div className="lite-hills absolute inset-0 opacity-95" />
       <div className="grid-floor absolute inset-0 opacity-25" />
       <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-term/[0.06] to-transparent" />

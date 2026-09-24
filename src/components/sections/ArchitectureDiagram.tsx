@@ -1,4 +1,3 @@
-import { Reveal } from "@/components/ui/reveal";
 import { ARCHITECTURE_STAGES } from "@/lib/constants";
 import type { ArchitectureStage } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -33,13 +32,12 @@ export function ArchitectureDiagram() {
     >
       {ARCHITECTURE_STAGES.map((stage, index) => (
         <li key={stage.id} className="flex flex-col">
-          <Reveal delay={index * 0.04}>
-            <div
-              className={cn(
-                "rounded-xl border p-4 transition-colors sm:p-5",
-                GROUP_STYLES[stage.group ?? "processing"],
-              )}
-            >
+          <div
+            className={cn(
+              "rounded-xl border p-4 transition-colors sm:p-5",
+              GROUP_STYLES[stage.group ?? "processing"],
+            )}
+          >
               <div className="flex items-start gap-3">
                 <span
                   aria-hidden
@@ -87,8 +85,7 @@ export function ArchitectureDiagram() {
                   </ul>
                 </div>
               </div>
-            </div>
-          </Reveal>
+          </div>
 
           {index < ARCHITECTURE_STAGES.length - 1 && (
             <div aria-hidden className="ml-[30px] h-7 w-px bg-term/25" />

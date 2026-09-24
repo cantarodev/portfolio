@@ -1,0 +1,67 @@
+---
+import { ArrowUpRight, Download } from "lucide-react";
+
+import { SystemFlowCard } from "@/components/SystemFlowCard";
+import { TECH_ICONS } from "@/components/ui/tech-icons";
+import { CTA, HERO, PERSONAL } from "@/lib/constants";
+
+const ctaPrimary =
+  "inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-term/45 bg-term/10 px-7 text-base font-medium text-term transition-all duration-200 hover:border-term/70 hover:bg-term/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-term/50";
+const ctaOutline =
+  "inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-crema/20 bg-ink/30 px-7 text-base font-medium text-crema/80 backdrop-blur transition-all duration-200 hover:border-crema/40 hover:bg-crema/10 hover:text-crema focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-term/50";
+---
+
+<section
+  id="hero"
+  aria-label="Presentación"
+  class="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 py-10 lg:min-h-[calc(100vh-100px)] lg:grid-cols-2 lg:gap-12 lg:py-16"
+>
+  <div class="min-w-0">
+    <p
+      class="inline-flex w-fit items-center gap-2 rounded-full border border-term/20 bg-term/10 px-3 py-1 font-mono text-[11px] tracking-wide text-term"
+    >
+      {HERO.badge}
+    </p>
+
+    <h1 class="mt-5 text-4xl font-bold tracking-tight text-crema lg:text-6xl">
+      {PERSONAL.name}
+    </h1>
+
+    <p class="mt-3 font-mono text-lg text-term lg:text-xl">
+      {HERO.headline}
+    </p>
+
+    <p class="mt-5 max-w-xl text-sm leading-relaxed text-crema/70 lg:text-base">
+      {HERO.supporting}
+    </p>
+
+    <ul class="mt-6 flex flex-wrap gap-1.5">
+      {
+        HERO.stack.map((tech) => {
+          const Icon = TECH_ICONS[tech] ?? TECH_ICONS.TypeScript;
+          return (
+            <li class="inline-flex items-center gap-1.5 rounded-md border border-crema/15 bg-ink/50 px-2.5 py-1 font-mono text-[11px] text-crema/75">
+              <Icon className="size-3.5 text-term/80" aria-hidden />
+              {tech}
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <a href="#projects" class={ctaPrimary}>
+        <ArrowUpRight className="size-4" aria-hidden />
+        {CTA.explore}
+      </a>
+      <a href={PERSONAL.resume} download class={ctaOutline}>
+        <Download className="size-4" aria-hidden />
+        {CTA.cv}
+      </a>
+    </div>
+  </div>
+
+  <div class="flex min-w-0 justify-center lg:justify-end">
+    <SystemFlowCard client:load />
+  </div>
+</section>
